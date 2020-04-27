@@ -5,7 +5,7 @@ class TreeNode:
         self.val = x
         self.left = None
         self.right = None
-
+# 前序遍历递归
 class Solution:
     def preorderTraversal(self, root: TreeNode) -> List[int]:
         """
@@ -22,7 +22,7 @@ class Solution:
         helper(root)
         return res
 
-# 迭代
+# 前序遍历迭代
 class Solution:
     def preorderTraversal(self, root: TreeNode) -> List[int]:
         if not root:
@@ -39,9 +39,7 @@ class Solution:
         return res
 
 
-145. 二叉树的后序遍历
-
-
+# 145. 二叉树的后序遍历递归
 class Solution:
     def postorderTraversal(self, root: TreeNode) -> List[int]:
         res = []
@@ -53,7 +51,7 @@ class Solution:
             res.append(root.val)
         helper(root)
         return res
-
+# 后序遍历迭代栈
 class Solution:
     def postorderTraversal(self, root: TreeNode) -> List[int]:
         res = []
@@ -68,7 +66,7 @@ class Solution:
                 stack.append(node.right)
             res.append(node.val)
         return res[::-1]
-# 其中一个法子
+# 其中一个法子灰白法，通用前中后
 class Solution:
     def postorderTraversal(self, root: TreeNode) -> List[int]:
         WHITE, GRAY = 0, 1
@@ -85,7 +83,7 @@ class Solution:
             else:
                 res.append(node.val)
         return res
-
+# 后序遍历迭代
 class Solution:
     def postorderTraversal(self, root: TreeNode) -> List[int]:
         if not root:
@@ -101,7 +99,7 @@ class Solution:
             stack += [i for i in [node, right, left] if i]
         return res
 
-
+# 中序遍历递归
 class Solution:
     def inorderTraversal(self, root: TreeNode) -> List[int]:
         res = []
@@ -116,59 +114,7 @@ class Solution:
             return root
         helper(root)
         return res
-
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
-
-class Solution:
-    def inorderTraversal(self, root):
-        """
-        :type root: TreeNode
-        :rtype: List[int]
-        """
-        res = []
-        if not root:
-            return res
-        stack = []
-        cur = root
-        while stack or cur:
-            while cur:
-                stack.append(cur)
-                cur = cur.left
-            cur = stack.pop()
-            res.append(cur.val)
-            cur = cur.right
-        return res
-
-
-class Solution:
-    def levelOrder(self, root):
-        """
-        :type root: TreeNode
-        :rtype: List[List[int]]
-        """
-        if not root:
-            return []
-
-        res,cur_level = [],[root]
-        while cur_level:
-            temp = []
-            next_level = []
-            for i in cur_level:
-                temp.append(i.val)
-
-                if i.left:
-                    next_level.append(i.left)
-                if i.right:
-                    next_level.append(i.right)
-            res.append(temp)
-            cur_level = next_level
-        return res
-# 我写的迭代
+# 中序遍历我写的迭代
 class Solution:
     def inorderTraversal(self, root: TreeNode) -> List[int]:
         if not root:
@@ -182,7 +128,46 @@ class Solution:
             res.append(curr.val)
             curr = curr.right
         return res
-
+# 102.层序遍历迭代（中等）
+class Solution:
+    def levelOrder(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        if not root:
+            return []
+        res,cur_level = [],[root]
+        while cur_level:
+            temp = []
+            next_level = []
+            for i in cur_level:
+                temp.append(i.val)
+                if i.left:
+                    next_level.append(i.left)
+                if i.right:
+                    next_level.append(i.right)
+            res.append(temp)
+            cur_level = next_level
+        return res
+# 层序遍历，我写的递归
+class Solution:
+    def levelOrder(self, root: TreeNode) -> List[List[int]]:
+        if not root:
+            return []
+        res = []
+        def helper(root, level):
+            if len(res)<level:
+                res.append([])
+                res[level-1].append(root.val)
+            else:
+                res[level-1].append(root.val)
+            if root.left:
+                helper(root.left, level+1)
+            if root.right:
+                helper(root.right, level+1)
+        helper(root, 1)
+        return res
 # 统一模板
 class Solution:
     def inorderTraversal(self, root: TreeNode) -> List[int]:
@@ -200,7 +185,6 @@ class Solution:
                 res.append(node.val)
         return res
 # 下面是我写的
-
 class Solution:
     def inorderTraversal(self, root: TreeNode) -> List[int]:
         WHITE, GRAY = 0, 1
