@@ -168,6 +168,25 @@ class Solution:
                 helper(root.right, level+1)
         helper(root, 1)
         return res
+# 层序遍历从下往上，没啥意思
+class Solution:
+    def levelOrderBottom(self, root: TreeNode) -> List[List[int]]:
+        if not root:
+            return []
+        res = []
+        curr_level = [root]
+        while curr_level:
+            temp = []
+            next_level = []
+            for i in curr_level:
+                temp.append(i.val)
+                if i.left:
+                    next_level.append(i.left)
+                if i.right:
+                    next_level.append(i.right)
+            res.insert(0, temp)
+            curr_level = next_level
+        return res
 # 统一模板
 class Solution:
     def inorderTraversal(self, root: TreeNode) -> List[int]:
