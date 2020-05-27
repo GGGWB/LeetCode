@@ -4,3 +4,8 @@ def bubbleSort(arr):
             if arr[j] > arr[j+1]:
                 arr[j], arr[j + 1] = arr[j + 1], arr[j]
     return arr
+
+
+a = [1,2, 3, 6, 5,4]
+print(bubbleSort(a))
+

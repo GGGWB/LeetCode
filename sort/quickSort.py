@@ -21,3 +21,6 @@ def partition(arr, left, right):
 
 def swap(arr, i, j):
     arr[i], arr[j] = arr[j], arr[i]
+
+
+print(quickSort([7,6,5,4,3,2,1]))

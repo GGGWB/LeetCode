@@ -5,7 +5,7 @@ class TreeNode:
         self.val = x
         self.left = None
         self.right = None
-# 前序遍历递归
+# 前序遍历递归记住这个
 class Solution:
     def preorderTraversal(self, root: TreeNode) -> List[int]:
         """
@@ -22,7 +22,7 @@ class Solution:
         helper(root)
         return res
 
-# 前序遍历迭代
+# 前序遍历迭代记住这个
 class Solution:
     def preorderTraversal(self, root: TreeNode) -> List[int]:
         if not root:
@@ -39,7 +39,7 @@ class Solution:
         return res
 
 
-# 145. 二叉树的后序遍历递归
+# 145. 二叉树的后序遍历递归记住这个
 class Solution:
     def postorderTraversal(self, root: TreeNode) -> List[int]:
         res = []
@@ -51,7 +51,7 @@ class Solution:
             res.append(root.val)
         helper(root)
         return res
-# 后序遍历迭代栈
+# 后序遍历迭代栈记住这个
 class Solution:
     def postorderTraversal(self, root: TreeNode) -> List[int]:
         res = []
@@ -99,7 +99,7 @@ class Solution:
             stack += [i for i in [node, right, left] if i]
         return res
 
-# 中序遍历递归
+# 中序遍历递归记住这个
 class Solution:
     def inorderTraversal(self, root: TreeNode) -> List[int]:
         res = []
@@ -196,23 +196,6 @@ class Solution:
         while stack:
             color, node = stack.pop()
             if node is None: continue
-            if color == WHITE:
-                stack.append((WHITE, node.right))
-                stack.append((GRAY, node))
-                stack.append((WHITE, node.left))
-            else:
-                res.append(node.val)
-        return res
-# 下面是我写的
-class Solution:
-    def inorderTraversal(self, root: TreeNode) -> List[int]:
-        WHITE, GRAY = 0, 1
-        res = []
-        stack = [(WHITE, root)]
-        while stack:
-            color, node = stack.pop()
-            if node is None:
-                continue
             if color == WHITE:
                 stack.append((WHITE, node.right))
                 stack.append((GRAY, node))
