@@ -18,6 +18,15 @@
 # 	return arr
 
 def insert_sort(arr):
+	for i in range(len(arr)):
+		preidx = i -1
+		ref = arr[i]
+		while ref < arr[preidx] and preidx >= 0:
+			arr[preidx+1] = arr[preidx]
+			preidx -= 1
+		arr[preidx+1] = ref
+	return arr
+
 
 
 

@@ -10,11 +10,14 @@ def merge(left,right):
     result = []
     while left and right:
         if left[0] <= right[0]:
-            result.append(left.pop(0));
+            result.append(left.pop(0))
         else:
-            result.append(right.pop(0));
+            result.append(right.pop(0))
     while left:
-        result.append(left.pop(0));
+        result.append(left.pop(0))
     while right:
-        result.append(right.pop(0));
+        result.append(right.pop(0))
     return result
+a = [1, 3, 5, 9, 6, 8, 0]
+b = mergeSort(a)
+print(b)
